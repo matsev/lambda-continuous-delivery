@@ -1,0 +1,18 @@
+{
+  "name": "greeting-lambda",
+  "version": "1.0.0",
+  "description": "Sample Greeting Lambda function",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive",
+    "xunit-test": "mocha --recursive -R xunit > xunit-test.xml",
+    "itest": "mocha --recursive integration-test",
+    "xunit-itest": "mocha --recursive integration-test -R xunit > xunit-itest.xml"
+  },
+  "devDependencies": {
+    "aws-sdk": "2.4.0",
+    "chai": "3.5.0",
+    "mocha": "2.5.3"
+  }
+}

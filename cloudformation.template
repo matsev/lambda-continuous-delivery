@@ -1,0 +1,45 @@
+
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Description" : "AWS CloudFormation sample template that contains a single Lambda function that will be updated by the build scripts",
+
+  "Resources" : {
+
+    "GreetingLambda": {
+      "Type" : "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "ZipFile": { "Fn::Join": ["\n", [
+            "'use strict';",
+            "",
+            "// Initial Echo Lambda",
+            "exports.handler = (event, context) => {",
+            "  console.log('Event:', JSON.stringify(event));",
+            "  context.succeed(event);",
+            "};"
+          ]]}
+        },
+        "Description": "A greeting function",
+        "FunctionName": "GreetingLambda",
+        "Handler": "index.handler",
+        "Role": { "Fn::GetAtt": ["LambdaExecutionRole", "Arn"]},
+        "Runtime": "nodejs4.3"
+      }
+    },
+
+    "LambdaExecutionRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [{
+            "Effect": "Allow",
+            "Principal": { "Service": ["lambda.amazonaws.com"] },
+            "Action": ["sts:AssumeRole"]
+          }]
+        },
+        "ManagedPolicyArns": ["arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"]
+      }
+    }
+  }
+}
