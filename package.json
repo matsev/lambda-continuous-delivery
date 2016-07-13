@@ -6,13 +6,14 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --recursive",
-    "xunit-test": "mocha --recursive -R xunit > xunit-test.xml",
+    "xunit-test": "XUNIT_FILE=xunit-test.xml mocha --recursive -R xunit-file",
     "itest": "mocha --recursive integration-test",
-    "xunit-itest": "mocha --recursive integration-test -R xunit > xunit-itest.xml"
+    "xunit-itest": "XUNIT_FILE=xunit-itest.xml mocha --recursive integration-test -R xunit-file"
   },
   "devDependencies": {
     "aws-sdk": "2.4.0",
     "chai": "3.5.0",
-    "mocha": "2.5.3"
+    "mocha": "2.5.3",
+    "xunit-file": "1.0.0"
   }
 }
